@@ -18,7 +18,7 @@ X_training = []
 Y_training = []
 X_test = []
 Y_test = []
-slackVariables = [1, 5, 10, 100]
+C = [1, 5, 10, 100]
 degrees = [1, 2, 3]
 kernels = ["linear", "poly", "rbf"]
 decision_function_shapes = ["ovo", "ovr"]
@@ -41,7 +41,7 @@ with open('optdigits.tes', 'r') as testingFile:
 
 #created 4 nested for loops that will iterate through the values of c, degree, kernel, and decision_function_shape
 maxAccuracy = 0.0
-for c in slackVariables: #iterates over c
+for c in C: #iterates over c
     for degree in degrees: #iterates over degree
         for kernel in kernels: #iterates kernel
            for shape in decision_function_shapes: #iterates over decision_function_shape
