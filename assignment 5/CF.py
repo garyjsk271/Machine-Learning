@@ -10,22 +10,29 @@ ACDC = [3,2,3,2]
 Kiss = [1,3,1.5, None]
 Guns = [3,1,2,None]
 
-def cosSimil(user1, user2):
-    sumOfProducts = 0
-    sumOfSquared1 = 0
-    sumOfSquared2 = 0
+def cos(user1, user2):
+    sumOfProducts = 0.0
+    sumOfSquared1 = 0.0
+    sumOfSquared2 = 0.0
     for i in range(len(user1)):
         if user1[i] is None or user2[i] is None:
             continue
         sumOfProducts += user1[i] * user2[i]
         sumOfSquared1 += user1[i]**2
         sumOfSquared2 += user2[i]**2
-    return sumOfProducts / (sumOfSquared1 * sumOfSquared2) ** (1/2)
-
-c1 = cosSimil(Guns, BonJovi)
-c2 = cosSimil(Guns, Metallica)
-c3 = cosSimil(Guns, Scorpians)
-c4 = cosSimil(Guns, ACDC)
+    return sumOfProducts / ((sumOfSquared1 * sumOfSquared2) ** (1/2))
+def mean(array):
+    sum = 0
+    count = 0
+    for value in array:
+        if value:
+            sum += value
+            count += 1
+    return sum/count
+c1 = cos(Guns, BonJovi)
+c2 = cos(Guns, Metallica)
+c3 = cos(Guns, Scorpians)
+c4 = cos(Guns, ACDC)
 
 print(c1)
 print(c2)
@@ -33,12 +40,14 @@ print(c3)
 print(c4)
 print()
 
-m = (3+1+2)/3
-x1 = (3+1.5+2)/3
-x2 = (3+2+3)/3
+m = mean(Guns[:3])
+m1 = mean(Metallica[:3])
+m2 = mean(ACDC[:3])
+c1, c2 = c2, c4
+print(c1, c2)
+wc = m + (c1*(2-m1) + c2*(2-m2) )/(c1+c2)
 
-wc = m + (c1*(2-x1) + c3*(2-x2) )/(c2+c4)
 print(m)
-print(x1)
-print(x2)
+print(m1)
+print(m2)
 print(wc)
